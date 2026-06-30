@@ -14,14 +14,22 @@ public class PlayerMovement2D : MonoBehaviour
     private bool isGrounded;
 
     private bool allowDoubleJump = false;
+    public Vector2 startPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.position;
     }
 
     void Update()
-    {
+    {   
+        if(transform.position.y < -5)
+        {
+            transform.position = startPosition;
+            rb.linearVelocity = Vector2.zero;
+        }
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         isGrounded = Physics2D.OverlapCircle(

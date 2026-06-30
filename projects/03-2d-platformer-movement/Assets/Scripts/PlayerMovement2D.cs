@@ -13,6 +13,8 @@ public class PlayerMovement2D : MonoBehaviour
     private float horizontalInput;
     private bool isGrounded;
 
+    private bool allowDoubleJump = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,9 +30,20 @@ public class PlayerMovement2D : MonoBehaviour
             groundLayer
         );
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            
+            if (isGrounded)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                allowDoubleJump = true;
+                
+            }
+            else if (allowDoubleJump)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                allowDoubleJump = false;
+            }
         }
     }
 

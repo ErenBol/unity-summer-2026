@@ -16,6 +16,9 @@ public class PlayerMovement2D : MonoBehaviour
     private bool allowDoubleJump = false;
     public Vector2 startPosition;
 
+    private int HPRemaining = 3;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,10 +27,6 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Update()
     {   
-        if(transform.position.y < -5)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -65,5 +64,23 @@ public class PlayerMovement2D : MonoBehaviour
         {
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
+    }
+    public void TakeDamage()
+    {
+        HPRemaining -= 1;
+        FindAnyObjectByType<GameManagement>().UpdateHP(HPRemaining);
+        if (HPRemaining <= 0)
+        {
+            FindAnyObjectByType<GameManagement>().LoseGame();
+        }
+
+        RespawnPlayer();
+    }
+
+    void RespawnPlayer()
+    {
+        transform.position = startPosition;
+
+        rb.linearVelocity = Vector2.zero;
     }
 }

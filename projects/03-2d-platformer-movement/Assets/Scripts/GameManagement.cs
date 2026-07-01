@@ -4,11 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
+    
     private int score = 0;
     public int winScore;
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI scoreText;
+
+    public TextMeshProUGUI HPRemainingText;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +20,7 @@ public class GameManagement : MonoBehaviour
         UpdateScoreText();
     }
 
-
+   
 
     public void AddScore()
     {
@@ -33,6 +37,7 @@ public class GameManagement : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
@@ -42,7 +47,16 @@ public class GameManagement : MonoBehaviour
     {
         scoreText.text = "Score: " + score;
     }
-
+    
+    public void UpdateHP(int hp)
+    {
+        HPRemainingText.text = "HPs: " +  hp;
+    }
+    
+    public void LoseGame()
+    {
+        winText.SetText("You Lose: Press R to restart again");
+    }
     private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

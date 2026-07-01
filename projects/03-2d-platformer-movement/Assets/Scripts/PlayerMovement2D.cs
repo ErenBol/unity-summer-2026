@@ -27,6 +27,10 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Update()
     {   
+        if (FindAnyObjectByType<GameManagement>().isGameOver)
+        {
+            return;
+        }
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -67,14 +71,20 @@ public class PlayerMovement2D : MonoBehaviour
     }
     public void TakeDamage()
     {
+        if (FindAnyObjectByType<GameManagement>().isGameOver)
+        {
+            return;
+        }
         HPRemaining -= 1;
         FindAnyObjectByType<GameManagement>().UpdateHP(HPRemaining);
         if (HPRemaining <= 0)
         {
             FindAnyObjectByType<GameManagement>().LoseGame();
         }
-
-        RespawnPlayer();
+        else
+        {
+            RespawnPlayer();
+        }
     }
 
     void RespawnPlayer()

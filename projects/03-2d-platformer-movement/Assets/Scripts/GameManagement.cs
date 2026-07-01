@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class GameManagement : MonoBehaviour
     private int score = 0;
     public int winScore;
 
+    public bool isGameOver = false;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI scoreText;
 
@@ -29,7 +31,7 @@ public class GameManagement : MonoBehaviour
 
         if (score >= winScore)
         {
-            winText.gameObject.SetActive(true);
+            WinGame();
         }
     }
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class GameManagement : MonoBehaviour
     }
     void UpdateScoreText()
     {
+        Time.timeScale = 1f;
         scoreText.text = "Score: " + score;
     }
     
@@ -53,12 +56,22 @@ public class GameManagement : MonoBehaviour
         HPRemainingText.text = "HPs: " +  hp;
     }
     
+    public void WinGame()
+    {
+        isGameOver = true;
+        winText.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
     public void LoseGame()
     {
+        isGameOver = true;
         winText.SetText("You Lose: Press R to restart again");
+        winText.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
     private void RestartGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

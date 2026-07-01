@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement2D : MonoBehaviour
 {
     public float moveSpeed = 6f;
@@ -26,8 +26,7 @@ public class PlayerMovement2D : MonoBehaviour
     {   
         if(transform.position.y < -5)
         {
-            transform.position = startPosition;
-            rb.linearVelocity = Vector2.zero;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         horizontalInput = Input.GetAxisRaw("Horizontal");

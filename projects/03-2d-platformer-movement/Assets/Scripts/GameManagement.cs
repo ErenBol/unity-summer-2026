@@ -1,7 +1,6 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
@@ -32,9 +31,22 @@ public class GameManagement : MonoBehaviour
     // Update is called once per frame
 
 
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+    }
     void UpdateScoreText()
     {
         scoreText.text = "Score: " + score;
     }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
+

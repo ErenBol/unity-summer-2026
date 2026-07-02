@@ -10,6 +10,9 @@ public class GameManagement : MonoBehaviour
     public int winScore;
 
     public bool isGameOver = false;
+
+    private CoinScript[] coins;
+
     public TextMeshProUGUI winText;
     public TextMeshProUGUI scoreText;
 
@@ -18,6 +21,7 @@ public class GameManagement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        coins = FindObjectsByType<CoinScript>(FindObjectsInactive.Include);
         winText.gameObject.SetActive(false);
         UpdateScoreText();
     }
@@ -28,15 +32,19 @@ public class GameManagement : MonoBehaviour
     {
         score +=1;
         UpdateScoreText();
-
-        if (score >= winScore)
-        {
-            WinGame();
-        }
     }
     // Update is called once per frame
 
-
+    public void ResetScore()
+    {
+        score = 0;
+        UpdateScoreText();
+        foreach (CoinScript coin in coins)
+        {
+        coin.gameObject.SetActive(true);
+        }
+    }
+    
     void Update()
     {
         
@@ -58,9 +66,13 @@ public class GameManagement : MonoBehaviour
     
     public void WinGame()
     {
-        isGameOver = true;
-        winText.gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        if (score >= winScore)
+        {
+            isGameOver = true;
+            winText.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        
     }
     public void LoseGame()
     {

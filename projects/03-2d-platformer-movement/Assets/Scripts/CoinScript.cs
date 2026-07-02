@@ -8,7 +8,7 @@ public class CoinScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FindAnyObjectByType<GameManagement>().AddScore();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -89,8 +89,8 @@ public class PlayerMovement2D : MonoBehaviour
 
     void RespawnPlayer()
     {
+        FindAnyObjectByType<GameManagement>().ResetScore();
         transform.position = startPosition;
-
         rb.linearVelocity = Vector2.zero;
     }
 }

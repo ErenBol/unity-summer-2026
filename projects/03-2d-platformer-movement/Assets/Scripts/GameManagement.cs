@@ -2,10 +2,11 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManagement : MonoBehaviour
 {
-    
+    public string nextSceneName;
     private int score = 0;
     public int winScore;
 
@@ -13,6 +14,7 @@ public class GameManagement : MonoBehaviour
 
     private CoinScript[] coins;
 
+    private Coroutine messageCoroutine;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI scoreText;
 
@@ -68,11 +70,17 @@ public class GameManagement : MonoBehaviour
     {
         if (score >= winScore)
         {
-            isGameOver = true;
-            winText.gameObject.SetActive(true);
-            Time.timeScale = 0f;
+            StartCoroutine(WinThenLoadNextLevel());
         }
-        
+        else
+        {
+            if (messageCoroutine != null)
+            {
+                StopCoroutine(messageCoroutine);
+            }
+
+            messageCoroutine = StartCoroutine(ShowTemporaryMessage("Collect all coins first!", 2f));
+        }
     }
     public void LoseGame()
     {
@@ -80,6 +88,31 @@ public class GameManagement : MonoBehaviour
         winText.SetText("You Lose: Press R to restart again");
         winText.gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    private IEnumerator WinThenLoadNextLevel()
+    {
+        isGameOver = true;
+
+        winText.SetText("You Win!");
+        winText.gameObject.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(nextSceneName);
+    }
+    private IEnumerator ShowTemporaryMessage(string message, float seconds)
+    {
+        winText.SetText(message);
+        winText.gameObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(seconds);
+
+        winText.gameObject.SetActive(false);
     }
     private void RestartGame()
     {

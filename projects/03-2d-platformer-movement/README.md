@@ -1,16 +1,21 @@
 # 2D Platformer Collectibles
 
-A beginner Unity 2D project where the player collects coins on platforms.
+A beginner Unity 2D platformer project with collectibles, hazards, HP, sounds, and win/lose conditions.
 
 ## Features
 
 - 2D player movement and jumping
-- Platform collision
-- Collectible coins
-- Score UI with TextMeshPro
-- Win condition after collecting enough coins
-- DeathZone that restarts the scene
-- Press R to restart
+- Camera follow
+- Collectible spinning coins
+- Score UI
+- HP tracking and HP UI
+- Hazards and fall detector
+- Respawn after damage
+- Coins reset after losing HP
+- Finish flag
+- Win and lose screens
+- Restart with R
+- Collect, hazard, and win sounds
 
 ## Controls
 

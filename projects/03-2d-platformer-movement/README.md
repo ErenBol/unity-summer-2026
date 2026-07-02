@@ -1,21 +1,20 @@
 # 2D Platformer Collectibles
 
-A beginner Unity 2D platformer project with collectibles, hazards, HP, sounds, and win/lose conditions.
+Unity 2D platformer where the player collects coins, avoids hazards, manages HP, and reaches the finish flag to progress between levels.
 
 ## Features
 
 - 2D player movement and jumping
-- Camera follow
-- Collectible spinning coins
-- Score UI
-- HP tracking and HP UI
+- Two playable levels
+- Collectible coins with score UI
+- HP system and respawn
 - Hazards and fall detector
-- Respawn after damage
-- Coins reset after losing HP
-- Finish flag
-- Win and lose screens
+- Win/lose conditions
 - Restart with R
-- Collect, hazard, and win sounds
+- Scene transition
+- Coin, hazard, and win and jump sounds
+- Layered background
+- Reusable prefabs
 
 ## Controls
 

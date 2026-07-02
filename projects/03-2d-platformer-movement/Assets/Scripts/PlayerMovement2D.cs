@@ -8,6 +8,8 @@ public class PlayerMovement2D : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.15f;
     public LayerMask groundLayer;
+    
+    public AudioClip jumpSound;
 
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -45,12 +47,14 @@ public class PlayerMovement2D : MonoBehaviour
             
             if (isGrounded)
             {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 allowDoubleJump = true;
                 
             }
             else if (allowDoubleJump)
             {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 allowDoubleJump = false;
             }

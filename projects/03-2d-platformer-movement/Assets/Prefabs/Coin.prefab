@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7726481922620235933}
   - component: {fileID: 2993938779213761159}
   - component: {fileID: 2450630083022649990}
+  - component: {fileID: -9056660161476235198}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Coin
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,3 +143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac708a1554446614ead98d70845b8ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  collectSound: {fileID: 8300000, guid: a1b61e7941478f547b214fda392a523b, type: 3}
+--- !u!114 &-9056660161476235198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941825925602131416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b11f4e9e59af074f878e3955dbf3edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinSpin
+  spinSpeed: 180
